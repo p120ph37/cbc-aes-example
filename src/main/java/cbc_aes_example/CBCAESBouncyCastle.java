@@ -1,4 +1,4 @@
-package crypt_example;
+package cbc_aes_example;
 
 import java.security.SecureRandom;
 import java.util.Arrays;

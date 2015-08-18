@@ -2,23 +2,18 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>crypt-example</groupId>
-  <artifactId>crypt-example</artifactId>
+  <groupId>cbc-aes-example</groupId>
+  <artifactId>cbc-aes-example</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>crypt-example</name>
+  <name>cbc-aes-example</name>
 
   <dependencies>
     <dependency>
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk16</artifactId>
       <version>1.46</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.9</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

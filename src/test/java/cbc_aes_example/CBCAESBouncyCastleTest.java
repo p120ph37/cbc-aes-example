@@ -1,16 +1,13 @@
-package crypt_example;
+package cbc_aes_example;
 
 import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
-import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.crypto.DataLengthException;
 import org.bouncycastle.crypto.InvalidCipherTextException;
+import org.bouncycastle.util.encoders.Hex;
 
-import crypt_example.CBCAESBouncyCastle;
+import cbc_aes_example.CBCAESBouncyCastle;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -35,27 +32,26 @@ public class CBCAESBouncyCastleTest
      * @throws NoSuchAlgorithmException 
      * @throws UnsupportedEncodingException 
      */
-    public void testCBCAESBouncyCastle() throws DataLengthException, InvalidCipherTextException, NoSuchAlgorithmException, UnsupportedEncodingException
+    public void testCBCAESBouncyCastle() throws UnsupportedEncodingException, DataLengthException, InvalidCipherTextException 
     {
-        new CBCAESBouncyCastle();
-        KeyGenerator kg = KeyGenerator.getInstance("AES");
-        kg.init(256);
-        SecretKey sk = kg.generateKey();
-
+        SecureRandom random = new SecureRandom();
+        byte[] key = new byte[32];
+        random.nextBytes(key);
+ 
         CBCAESBouncyCastle cabc = new CBCAESBouncyCastle();
-        cabc.setKey(sk.getEncoded());
+        cabc.setKey(key);
 
         String input = "This is a secret message!";
         System.out.println("Input[" + input.length() + "]: " + input);
 
         byte[] plain = input.getBytes("UTF-8");
-        System.out.println("Plaintext[" + plain.length + "]: " + Hex.encodeHexString(plain));
+        System.out.println("Plaintext[" + plain.length + "]: " + new String(Hex.encode(plain)));
 
         byte[] encr = cabc.encrypt(plain);
-        System.out.println("Encrypted[" + encr.length + "]: " + Hex.encodeHexString(encr));
+        System.out.println("Encrypted[" + encr.length + "]: " + new String(Hex.encode(encr)));
 
         byte[] decr = cabc.decrypt(encr);
-        System.out.println("Decrypted[" + decr.length + "]: " + Hex.encodeHexString(decr));
+        System.out.println("Decrypted[" + decr.length + "]: " + new String(Hex.encode(decr)));
 
         String output = new String(decr, "UTF-8");
         System.out.println("Output[" + output.length() + "]: " + output);
