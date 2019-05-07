@@ -1,5 +1,5 @@
 # cbc-aes-example
-Example using BouncyCastle to encrypt/decrypt strings with AES in CBC mode.
+Example using BouncyCastle to encrypt/decrypt strings with AES in CBC and CTR mode.
 
 Can be used with data keys obtained from AWS KMS:
 http://docs.aws.amazon.com/kms/latest/developerguide/programming-keys.html
